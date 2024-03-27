@@ -1,0 +1,50 @@
+create schema driving_academy;
+use driving_academy;
+
+create table admin(
+ id int not null primary key auto_increment,
+    name varchar(255),
+    password varchar(255));
+    
+create table student(
+	id int not null primary key auto_increment,
+    admission_date varchar(255),
+    age int not null,
+    location varchar(255),
+    name varchar(255),
+    password varchar(255),
+    training_type varchar(255),
+    username varchar(255));
+    
+create table trainer(
+	tid int not null primary key auto_increment,
+    location varchar(255),
+    name varchar(255),
+    vehicle_vid int,
+    foreign key (vehicle_vid) references vehicle(vid)
+);
+    
+    
+create table vehicle(
+	vid int not null primary key auto_increment,
+    brand varchar(255),
+    model varchar(255),
+    type varchar(255));
+
+create table schedule(
+	sid int not null primary key auto_increment,
+    time varchar(255),
+    student_id int,
+    trainer_id int,
+    date varchar(255),
+    foreign key (student_id) references student(id),
+    foreign key (trainer_id) references trainer(tid)
+);
+
+create table attendance(
+	aid int not null primary key auto_increment,
+    attendence varchar(255),
+    date varchar(255),
+    student_id int,
+    foreign key (student_id) references student(id)
+);
